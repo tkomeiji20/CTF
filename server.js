@@ -105,6 +105,19 @@ io.on("connection", function (socket) {
 });
 
 setInterval(function () {
+	for (const playerI of players) {
+		for (const playerJ of players) {
+			if (!(playerI.id === playerJ.id)) {
+				if (
+					Math.abs(playerI.x - playerJ.x) < 20 &&
+					Math.abs(playerI.y - playerJ.y) < 20
+				) {
+					// collide
+					console.log("uh oh!");
+				}
+			}
+		}
+	}
 	io.sockets.emit("refresh", { players, blueScore, redScore });
 }, 50);
 
