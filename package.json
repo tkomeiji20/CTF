@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tkomeiji20/CTF/issues"
   },
-  "homepage": "https://github.com/tkomeiji20/CTF#readme"
+  "homepage": "https://github.com/tkomeiji20/CTF#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
 }
