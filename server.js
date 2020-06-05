@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
@@ -13,13 +11,3 @@ let io = socketio(server);
 
 app.use(express.static(pathPublic));
 
-io.on('connection', function(socket) {
-
-
-});
-
-
-server.listen(8080, function() {
-	console.log("server running on port 8080");
-});
->>>>>>> Stashed changes
