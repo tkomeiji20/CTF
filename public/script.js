@@ -23,7 +23,8 @@ $("body").keydown(function (e) {
 	if (key == 65 || key == 37) {
 		console.log("Pressed left");
 		socket.emit("left");
-	} if (key == 68 || key == 39) {
+	}
+	if (key == 68 || key == 39) {
 		console.log("Pressed right");
 		socket.emit("right");
 	}
@@ -54,19 +55,20 @@ $("body").keydown(function (e) {
 });
 
 socket.on("refresh", function (players) {
-    // console.log("received players!");
-    for (let i = 0; i < players.length; i++) {
-        var myEle = document.getElementById(`${players[i].id}`);
-        if (myEle) {
-            $(`#${players[i].id}`).clearQueue();
-            $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
-        }
-        else {
-            $("#field").append(`<div id="${players[i].id}" class="player ${players[i].team}"></div>`);
-            $(`#${players[i].id}`).clearQueue();
-            $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
-        }
-    }
+	// console.log("received players!");
+	for (let i = 0; i < players.length; i++) {
+		var myEle = document.getElementById(`${players[i].id}`);
+		if (!myEle) {
+			$("#field").append(
+				`<div id="${players[i].id}" class="player ${players[i].team}"></div>`
+			);
+		}
+		$(`#${players[i].id}`).clearQueue();
+		$(`#${players[i].id}`).animate(
+			{ bottom: players[i].y + "px", left: players[i].x + "px" },
+			50
+		);
+	}
 });
 
 // // FOR LUKE AND TREVOR -- END

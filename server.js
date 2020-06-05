@@ -13,10 +13,11 @@ const express = require("express"),
 app.use(helmet());
 app.use(express.static(__dirname + "/public"));
 
-var playerCt = 0;
-var players = [];
-var blueScore = 0;
-var redScore = 0;
+let playerCt = 0,
+	players = [],
+	blueScore = 0,
+	redScore = 0,
+	moveSpeed = 10;
 
 io.on("connection", function (socket) {
 	// Socket stuff in here
@@ -25,31 +26,43 @@ io.on("connection", function (socket) {
 
 	playerCt++;
 	if (playerCt % 2 == 1) {
-		players.push({ team: "red", x: 0, y: 0, id: socket.id, hasFlag: false });
+		players.push({
+			team: "red",
+			x: 0,
+			y: 0,
+			id: socket.id,
+			hasFlag: false,
+		});
 		socket.emit("newPlayer", socket.id, "red");
 	} else {
-		players.push({ team: "blue", x: 0, y: 0, id: socket.id, hasFlag: false });
+		players.push({
+			team: "blue",
+			x: 0,
+			y: 0,
+			id: socket.id,
+			hasFlag: false,
+		});
 		socket.emit("newPlayer", socket.id, "blue");
 	}
 
 	socket.on("up", function () {
 		debug && console.log("Moved up");
-		players.find((player) => player.id === socket.id).y += 5;
+		players.find((player) => player.id === socket.id).y += moveSpeed;
 	});
 
 	socket.on("down", function () {
 		debug && console.log("Moved down");
-		players.find((player) => player.id === socket.id).y -= 5;
+		players.find((player) => player.id === socket.id).y -= moveSpeed;
 	});
 
 	socket.on("left", function () {
 		debug && console.log("Moved left");
-		players.find((player) => player.id === socket.id).x -= 5;
+		players.find((player) => player.id === socket.id).x -= moveSpeed;
 	});
 
 	socket.on("right", function () {
 		debug && console.log("Moved right");
-		players.find((player) => player.id === socket.id).x += 5;
+		players.find((player) => player.id === socket.id).x += moveSpeed;
 	});
 
 	socket.on("disconnect", function () {
