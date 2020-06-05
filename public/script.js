@@ -15,15 +15,15 @@ $("body").keydown(function (e) {
 		socket.emit("up");
 	}
 	// Move down
-	else if (key == 83 || key == 40) {
+	if (key == 83 || key == 40) {
 		console.log("Pressed down");
 		socket.emit("down");
 	}
 	// Move left
-	else if (key == 65 || key == 37) {
+	if (key == 65 || key == 37) {
 		console.log("Pressed left");
 		socket.emit("left");
-	} else if (key == 68 || key == 39) {
+	} if (key == 68 || key == 39) {
 		console.log("Pressed right");
 		socket.emit("right");
 	}
