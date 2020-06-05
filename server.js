@@ -28,8 +28,8 @@ io.on("connection", function (socket) {
 	if (playerCt % 2 == 1) {
 		players.push({
 			team: "red",
-			x: 0,
-			y: 0,
+			x: 50,
+			y: 576 / 2,
 			id: socket.id,
 			hasFlag: false,
 		});
@@ -37,8 +37,8 @@ io.on("connection", function (socket) {
 	} else {
 		players.push({
 			team: "blue",
-			x: 0,
-			y: 0,
+			x: 876 - 50,
+			y: 576 / 2,
 			id: socket.id,
 			hasFlag: false,
 		});
@@ -57,12 +57,26 @@ io.on("connection", function (socket) {
 
 	socket.on("left", function () {
 		debug && console.log("Moved left");
-		players.find((player) => player.id === socket.id).x -= moveSpeed;
+		let player = players.find((player) => player.id === socket.id);
+		player.x -= moveSpeed;
+
+		// 438 is the midpoint
+		if (player.x < 438 && player.team === "blue" && player.hasFlag) {
+			redScore++;
+			player.hasFlag = false;
+		}
 	});
 
 	socket.on("right", function () {
 		debug && console.log("Moved right");
-		players.find((player) => player.id === socket.id).x += moveSpeed;
+		let player = players.find((player) => player.id === socket.id);
+		player.x += moveSpeed;
+
+		// 438 is the midpoint
+		if (player.x > 438 && player.team === "red" && player.hasFlag) {
+			redScore++;
+			player.hasFlag = false;
+		}
 	});
 
 	socket.on("disconnect", function () {
@@ -82,6 +96,11 @@ io.on("connection", function (socket) {
 		}
 
 		playerCt--;
+		if (playerCt === 0) {
+			// No players left :(
+			blueScore = 0;
+			redScore = 0;
+		}
 	});
 });
 

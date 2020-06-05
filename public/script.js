@@ -1,10 +1,13 @@
 // FOR LUKE AND TREVOR -- START
 let socket = io();
 
-socket.on("newPlayer", function (id, team) {
-	$("#field").append(`<div id="${id}" class="player ${team}"></div>`);
-	$(`#${id}`).css({ bottom: 0, left: 0 });
-});
+// socket.on("newPlayer", function (id, team) {
+// 	$("#field").append(`<div id="${id}" class="player ${team}"></div>`);
+// 	$(`#${id}`).css({ bottom: 0, left: 0 });
+// });
+
+// TODO next
+// https://stackoverflow.com/questions/10655202/detect-multiple-keys-on-single-keypress-event-in-jquery
 
 $("body").keydown(function (e) {
 	var key = e.which;
@@ -59,15 +62,21 @@ socket.on("refresh", function (players) {
 	for (let i = 0; i < players.length; i++) {
 		var myEle = document.getElementById(`${players[i].id}`);
 		if (!myEle) {
+			// does not exist yet
 			$("#field").append(
 				`<div id="${players[i].id}" class="player ${players[i].team}"></div>`
 			);
+			$(`#${players[i].id}`).animate(
+				{ bottom: players[i].y + "px", left: players[i].x + "px" },
+				0
+			);
+		} else {
+			$(`#${players[i].id}`).clearQueue();
+			$(`#${players[i].id}`).animate(
+				{ bottom: players[i].y + "px", left: players[i].x + "px" },
+				50
+			);
 		}
-		$(`#${players[i].id}`).clearQueue();
-		$(`#${players[i].id}`).animate(
-			{ bottom: players[i].y + "px", left: players[i].x + "px" },
-			50
-		);
 	}
 });
 
