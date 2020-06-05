@@ -146,6 +146,15 @@ setInterval(function () {
 				}
 			}
 		}
+
+		if (Math.abs(playerI.x - 30) < 30 && Math.abs(playerI.y - 278 - 20) < 30 && playerI.team === "blue") {
+			// touching red flag
+			playerI.hasFlag = true;
+		}
+		if (Math.abs(playerI.x - 841) < 30 && Math.abs(playerI.y - 278 - 20) < 30 && playerI.team === "red") {
+			// touching red flag
+			playerI.hasFlag = true;
+		}
 	}
 	io.sockets.emit("refresh", { players, blueScore, redScore });
 }, 50);
