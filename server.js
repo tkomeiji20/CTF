@@ -132,6 +132,11 @@ setInterval(function () {
 				}
 			}
 		}
+
+		if (Math.abs(playerI.x - 30) < 30 && Math.abs(playerI.y - 278) < 30 && playerI.team === "blue") {
+			// touching red flag
+			console.log("blue has flag")
+		}
 	}
 	io.sockets.emit("refresh", { players, blueScore, redScore });
 }, 50);
