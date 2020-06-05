@@ -105,7 +105,7 @@ io.on("connection", function (socket) {
 });
 
 setInterval(function () {
-	io.sockets.emit("refresh", players);
+	io.sockets.emit("refresh", { players, blueScore, redScore });
 }, 50);
 
 // io.on("connection", (socket) => {
