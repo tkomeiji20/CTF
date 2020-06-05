@@ -50,20 +50,29 @@ io.on("connection", function (socket) {
 
 		playerCt--;
 	});
+
+	socket.on('chat message', (msg) => {
+	    console.log('message: ' + msg);
+	});
+
+  	socket.on('chat message', (msg) => {
+    	io.emit('chat message', msg);
+  	});
 });
 
 server.listen(8080, function () {
 	console.log("server running on port 8080");
 });
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-  });
-});
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-});
+
+/*socket.on('down', () => {
+		console.log("Down")
+	});
+	socket.on('left', () => {
+		console.log("Left")
+	});
+	socket.on('right', () => {
+		console.log("Right")
+	});
+*/
