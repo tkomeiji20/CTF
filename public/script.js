@@ -106,7 +106,7 @@ socket.on("refresh", function ({ players, redScore, blueScore }) {
 			$(`#${players[i].id}`).clearQueue();
 			$(`#${players[i].id}`).animate(
 				{ bottom: players[i].y + "px", left: players[i].x + "px" },
-				70
+				70, "linear"
 			);
 		}
 		if (players[i].hasFlag) {
