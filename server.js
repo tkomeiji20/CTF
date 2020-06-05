@@ -16,12 +16,12 @@ var redTeam = [];
 var blueScore = 0;
 var redScore = 0;
 
-
+var player = {x: }
 
 
 io.on("connection", function (socket) {
 	// Socket stuff in here
-
+	// Add new object to team arrays
 
 
 });
