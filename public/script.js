@@ -8,6 +8,27 @@ socket.on('newPlayer', function(id, team) {
 
 $("body").keydown(function (e) {
 	var key = e.which;
+
+	// Move up
+	if (key == 87 || key == 38) {
+		console.log("Pressed up");
+		socket.emit("up");
+	}
+	// Move down
+	else if (key == 83 || key == 40) {
+		console.log("Pressed down");
+		socket.emit("down");
+	}
+	// Move left
+	else if (key == 65 || key == 37) {
+		console.log("Pressed left");
+		socket.emit("left");
+	}
+	else if (key == 68 || key == 39) {
+		console.log("Pressed right");
+		socket.emit("right");
+	}
+/* 
 	switch (key) {
 		// W or up arrow
 		case 87:
@@ -30,11 +51,11 @@ $("body").keydown(function (e) {
 			console.log("Pressed right");
 			socket.emit("right");
 			break;
-	}
+	} */
 });
 
 socket.on("refresh", function (players) {
-    console.log("received players!");
+    // console.log("received players!");
     for (let i = 0; i < players.length; i++) {
         $(`#${players[i].id}`).clearQueue();
         $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
