@@ -22,10 +22,10 @@ io.on("connection", function (socket) {
 	// Add new object to team arrays
 	playerCt++;
 	if (playerCt % 2 == 1) {
-		players.push{team: "red", x: "0", y: '0', id: socket.id}
+		redTeam.push({x: "0", y: '0', id: socket.id})
 	}
 	else {
-		players.push{team: "blue", x: "0", y: '0', id: socket.id}
+		blueTeam.push({x: "0", y: '0', id: socket.id})
 	}
 
 
