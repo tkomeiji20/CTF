@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tkomeiji20/CTF#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "prettier": "^2.0.5",
     "socket.io": "^2.3.0"
   }
 }
