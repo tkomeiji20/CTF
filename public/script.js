@@ -20,5 +20,5 @@ $("#field").keydown(function(e) {
 // Just for testing positioning things.
 
 
-var testPlayer = {x: 886, y: 586}
+var testPlayer = {x: 876, y: 576}
 $("#testRed").css({"bottom": testPlayer.y + "px", "left": testPlayer.x + "px"})
