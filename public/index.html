@@ -11,10 +11,10 @@
 		<div id = "line">
 		</div>
 
-		<div class="testBlue" class="player">
+		<div id="testBlue" class="player" class="blue">
 		</div>
 
-		<div class="testRed" class="player">
+		<div id="testRed" class="player" class="red">
 		</div>
 
 	<div>
@@ -34,6 +34,9 @@
 	      $('#m').val('');
 	      return false;
 	    });
+	    socket.on('chat message', function(msg){
+      		$('#messages').append($('<li>').text(msg));
+    	});
 	  });
 	</script>
 	<ul id="messages"></ul>

@@ -1,5 +1,5 @@
 #field{
-  position: absoulte;
+  position: absolute;
   width: 900px;
   height: 600px;
   border: 3px solid black;
@@ -19,11 +19,23 @@
   width: 10px;
   height: 10px;
   border: 2px solid black;
+  position: relative;
 }
 
-.testBlue{
+.blue{
   background-color: #0ACDFF;
-  position: relative;
+}
+
+.red{
+  background-color: #F7717D;
+}
+
+#testBlue{
+  left: 0;
+  top: 0;
+}
+
+#testRed{
   left: 0;
   top: 0;
 }
