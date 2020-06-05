@@ -36,8 +36,16 @@ $("body").keydown(function (e) {
 socket.on("refresh", function (players) {
     console.log("received players!");
     for (let i = 0; i < players.length; i++) {
-        $(`#${players[i].id}`).clearQueue();
-        $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
+        var myEle = document.getElementById(`${players[i].id}`);
+        if (myEle) {
+            $(`#${players[i].id}`).clearQueue();
+            $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
+        }
+        else {
+            $("#field").append(`<div id="${players[i].id}" class="player ${players[i].team}"></div>`);
+            $(`#${players[i].id}`).clearQueue();
+            $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
+        }
     }
 });
 
