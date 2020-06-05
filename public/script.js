@@ -59,6 +59,8 @@ $("body").keydown(function (e) {
 });
 
 socket.on("refresh", function ({ players, redScore, blueScore }) {
+    $("#redScore").html(redScore);
+    $("#blueScore").html(blueScore);
 	// console.log("received players!");
 	for (let i = 0; i < players.length; i++) {
 		var myEle = document.getElementById(`${players[i].id}`);

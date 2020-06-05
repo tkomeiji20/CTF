@@ -155,6 +155,12 @@ setInterval(function () {
 			// red guy touching blue flag
 			playerI.hasFlag = true;
 		}
+
+		if (playerI.hasFlag === true && playerI.team === "red" && playerI.x < 438) {
+			redScore++;
+		} else if (playerI.hasFlag === true && playerI.team === "blue" && playerI.x > 438) {
+			blueScore++;
+		}
 	}
 	io.sockets.emit("refresh", { players, blueScore, redScore });
 }, 50);
