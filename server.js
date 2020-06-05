@@ -29,17 +29,18 @@ io.on("connection", function (socket) {
 
 	socket.on("up", function () {
 		console.log("Moved up");
+		players.find((player) => player.id === socket.id).y++;
 	});
 
-	socket.on("down", function() {
+	socket.on("down", function () {
 		console.log("Moved down");
 	});
 
-	socket.on("left", function() {
+	socket.on("left", function () {
 		console.log("Moved left");
 	});
 
-	socket.on("right", function() {
+	socket.on("right", function () {
 		console.log("Moved right");
 	});
 
