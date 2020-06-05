@@ -31,6 +31,18 @@ io.on("connection", function (socket) {
 		console.log("Moved up");
 	});
 
+	socket.on("down", function() {
+		console.log("Moved down");
+	});
+
+	socket.on("left", function() {
+		console.log("Moved left");
+	});
+
+	socket.on("right", function() {
+		console.log("Moved right");
+	});
+
 	socket.on("disconnect", function () {
 		console.log("User disconnected: " + socket.id);
 		// Get index of person that left
