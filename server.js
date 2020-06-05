@@ -45,12 +45,12 @@ io.on("connection", function (socket) {
 
 	socket.on("left", function () {
 		debug && console.log("Moved left");
-		players.find((player) => player.id === socket.id).x++;
+		players.find((player) => player.id === socket.id).x--;
 	});
 
 	socket.on("right", function () {
 		debug && console.log("Moved right");
-		players.find((player) => player.id === socket.id).x--;
+		players.find((player) => player.id === socket.id).x++;
 	});
 
 	socket.on("disconnect", function () {
