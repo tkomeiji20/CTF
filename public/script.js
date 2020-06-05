@@ -54,7 +54,6 @@ $("body").keydown(function (e) {
 });
 
 socket.on("refresh", function (players) {
-<<<<<<< HEAD
     // console.log("received players!");
     for (let i = 0; i < players.length; i++) {
         var myEle = document.getElementById(`${players[i].id}`);
@@ -68,16 +67,6 @@ socket.on("refresh", function (players) {
             $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
         }
     }
-=======
-	// console.log("received players!");
-	for (let i = 0; i < players.length; i++) {
-		$(`#${players[i].id}`).clearQueue();
-		$(`#${players[i].id}`).animate(
-			{ bottom: players[i].y + "px", left: players[i].x + "px" },
-			30
-		);
-	}
->>>>>>> 77f6f5979afc37690934dba3c9cc0a03a6c09324
 });
 
 // // FOR LUKE AND TREVOR -- END
