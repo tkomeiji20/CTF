@@ -35,22 +35,22 @@ io.on("connection", function (socket) {
 
 	socket.on("up", function () {
 		debug && console.log("Moved up");
-		players.find((player) => player.id === socket.id).y++;
+		players.find((player) => player.id === socket.id).y += 5;
 	});
 
 	socket.on("down", function () {
 		debug && console.log("Moved down");
-		players.find((player) => player.id === socket.id).y--;
+		players.find((player) => player.id === socket.id).y -= 5;
 	});
 
 	socket.on("left", function () {
 		debug && console.log("Moved left");
-		players.find((player) => player.id === socket.id).x--;
+		players.find((player) => player.id === socket.id).x -= 5;
 	});
 
 	socket.on("right", function () {
 		debug && console.log("Moved right");
-		players.find((player) => player.id === socket.id).x++;
+		players.find((player) => player.id === socket.id).x += 5;
 	});
 
 	socket.on("disconnect", function () {
@@ -75,7 +75,7 @@ io.on("connection", function (socket) {
 
 setInterval(function () {
 	io.sockets.emit("refresh", players);
-}, 3000);
+}, 10);
 
 // io.on("connection", (socket) => {
 // 	socket.on("chat message", (msg) => {
