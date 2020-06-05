@@ -34,7 +34,9 @@ io.on("connection", function (socket) {
 
 	socket.on('disconnect', function() {
 		console.log("User disconnected" + socket.id);
+		// Get index of person that left
 		var toRemove = players.map(function(player) { return player.id; }).indexOf(socket.id);
+		// Remove player from players
 		if (toRemove != -1) {
 			players.splice(toRemove, 1);
 		}
