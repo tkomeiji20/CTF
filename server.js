@@ -10,7 +10,6 @@ const express = require("express"),
 	helmet = require("helmet"),
 	io = require("socket.io")(server);
 
-
 app.use(helmet());
 app.use(express.static(__dirname + "/public"));
 
@@ -61,15 +60,18 @@ io.on("connection", function (socket) {
 		// Remove player from players
 		if (toRemove != -1) {
 			players.splice(toRemove, 1);
+			console.log("Player disconnected. " + socket.id);
 		} else {
-			debug && console.log("WHAT JUST HAPPENED?!");
+			console.log("Could not remove player on disconnect. " + socket.id);
 		}
 
 		playerCt--;
 	});
 });
 
-setInterval(function() { io.sockets.emit('refresh', players); }, 3000);
+setInterval(function () {
+	io.sockets.emit("refresh", players);
+}, 3000);
 
 // io.on("connection", (socket) => {
 // 	socket.on("chat message", (msg) => {
