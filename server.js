@@ -73,7 +73,7 @@ io.on("connection", function (socket) {
 		}
 
 		// 438 is the midpoint
-		if (player.x < 438 && player.team === "blue" && player.hasFlag) {
+		if (player.x < 438 && player.team === "red" && player.hasFlag) {
 			redScore++;
 			player.hasFlag = false;
 		}
@@ -88,8 +88,8 @@ io.on("connection", function (socket) {
 			player.x = 876;
 		}
 		// 438 is the midpoint
-		if (player.x > 438 && player.team === "red" && player.hasFlag) {
-			redScore++;
+		if (player.x > 438 && player.team === "blue" && player.hasFlag) {
+			blueScore++;
 			player.hasFlag = false;
 		}
 	});
