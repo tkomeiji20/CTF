@@ -9,6 +9,7 @@ let playerList = [];
 
 // TODO next
 // https://stackoverflow.com/questions/10655202/detect-multiple-keys-on-single-keypress-event-in-jquery
+// make it so hasFlag can only be set for one user
 
 $("body").keydown(function (e) {
 	var key = e.which;

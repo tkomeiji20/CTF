@@ -130,27 +130,20 @@ setInterval(function () {
 		for (const playerJ of players) {
 			if (!(playerI.id === playerJ.id)) {
 				if (
-					playerI.x < playerJ.x + 20 &&
-					playerI.x + 20 > playerJ.x &&
-					playerI.y < playerJ.y + 20 &&
-					playerI.y + 20 > playerJ.y
+					playerI.x < playerJ.x + 22 &&
+					playerI.x + 22 > playerJ.x &&
+					playerI.y < playerJ.y + 22 &&
+					playerI.y + 22 > playerJ.y
 				) {
 					// Collided
-					playerI.hasFlag = false;
-					playerJ.hasFlag = false;
 					if (playerI.team === "red" && playerI.x > 438) {
 						playerI.x = 100;
 						playerI.y = 576 / 2;
+						playerI.hasFlag = false;
 					} else if (playerI.team === "blue" && playerI.x < 438) {
 						playerI.x = 876 - 100;
 						playerI.y = 576 / 2;
-					} else {
-						if (playerJ.team === "red") {
-							playerJ.x = 100;
-						} else {
-							playerJ.x = 876 - 100;
-						}
-						playerJ.y = 576 / 2;
+						playerI.hasFlag = false;
 					}
 				}
 			}
@@ -162,7 +155,11 @@ setInterval(function () {
 			playerI.team === "blue"
 		) {
 			// blue guy touching red flag
-			playerI.hasFlag = true;
+			if (!players.map((player) => {return player.team === "blue" && player.hasFlag}).indexOf(true)) {
+				// no other blue guy touching flag
+				playerI.hasFlag = true;
+			}
+			
 		}
 		if (
 			Math.abs(playerI.x - 841) < 30 &&
@@ -170,7 +167,10 @@ setInterval(function () {
 			playerI.team === "red"
 		) {
 			// red guy touching blue flag
-			playerI.hasFlag = true;
+			if (!players.map((player) => {return player.team === "red" && player.hasFlag}).indexOf(true)) {
+				// no other red guy touching flag
+				playerI.hasFlag = true;
+			}
 		}
 
 		if (
