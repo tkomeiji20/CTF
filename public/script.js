@@ -1,9 +1,9 @@
 // FOR LUKE AND TREVOR -- START
 let socket = io();
 
-socket.on('newPlayer', function(id, team) {
-    $("#field").append(`<div id="${id}" class="player ${team}"></div>`);
-    $(`#${id}`).css({bottom: 0, left: 0});
+socket.on("newPlayer", function (id, team) {
+	$("#field").append(`<div id="${id}" class="player ${team}"></div>`);
+	$(`#${id}`).css({ bottom: 0, left: 0 });
 });
 
 $("body").keydown(function (e) {
@@ -23,12 +23,11 @@ $("body").keydown(function (e) {
 	else if (key == 65 || key == 37) {
 		console.log("Pressed left");
 		socket.emit("left");
-	}
-	else if (key == 68 || key == 39) {
+	} else if (key == 68 || key == 39) {
 		console.log("Pressed right");
 		socket.emit("right");
 	}
-/* 
+	/* 
 	switch (key) {
 		// W or up arrow
 		case 87:
@@ -55,11 +54,14 @@ $("body").keydown(function (e) {
 });
 
 socket.on("refresh", function (players) {
-    // console.log("received players!");
-    for (let i = 0; i < players.length; i++) {
-        $(`#${players[i].id}`).clearQueue();
-        $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 30);
-    }
+	// console.log("received players!");
+	for (let i = 0; i < players.length; i++) {
+		$(`#${players[i].id}`).clearQueue();
+		$(`#${players[i].id}`).animate(
+			{ bottom: players[i].y + "px", left: players[i].x + "px" },
+			30
+		);
+	}
 });
 
 // // FOR LUKE AND TREVOR -- END
