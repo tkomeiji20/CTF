@@ -10,6 +10,7 @@ const express = require("express"),
 	helmet = require("helmet"),
 	io = require("socket.io")(server);
 
+
 app.use(helmet());
 app.use(express.static(__dirname + "/public"));
 
@@ -21,10 +22,7 @@ var redScore = 0;
 io.on("connection", function (socket) {
 	// Socket stuff in here
 	// Add new object to team arrays
-	debug && console.log("Player connected!");
-	
-	socket.emit('newPlayer', socket.id);
-
+	console.log("Player connected! " + socket.id);
 	playerCt++;
 	if (playerCt % 2 == 1) {
 		players.push({ team: "red", x: 0, y: 0, id: socket.id });
@@ -71,9 +69,7 @@ io.on("connection", function (socket) {
 	});
 });
 
-setInterval(function () {
-	io.sockets.emit("refresh", players);
-}, 3000);
+setInterval(function() { io.sockets.emit('refresh', players); }, 3000);
 
 // io.on("connection", (socket) => {
 // 	socket.on("chat message", (msg) => {
