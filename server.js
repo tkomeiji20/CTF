@@ -21,10 +21,12 @@ io.on("connection", function (socket) {
 	// Add new object to team arrays
 	playerCt++;
 	if (playerCt % 2 == 1) {
-		redTeam.push({ x: "0", y: "0", id: socket.id });
+		players.push({ x: "0", y: "0", id: socket.id });
 	} else {
-		blueTeam.push({ x: "0", y: "0", id: socket.id });
+		players.push({ x: "0", y: "0", id: socket.id });
 	}
+
+
 
 	socket.on("disconnect", function () {
 		console.log("User disconnected" + socket.id);
