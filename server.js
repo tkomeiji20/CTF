@@ -47,18 +47,31 @@ io.on("connection", function (socket) {
 
 	socket.on("up", function () {
 		debug && console.log("Moved up");
-		players.find((player) => player.id === socket.id).y += moveSpeed;
+		if (players.find((player) => player.id === socket.id).y < 576 - moveSpeed) {
+			players.find((player) => player.id === socket.id).y += moveSpeed;
+		} else {
+			players.find((player) => player.id === socket.id).y = 576;
+		}
 	});
 
 	socket.on("down", function () {
 		debug && console.log("Moved down");
-		players.find((player) => player.id === socket.id).y -= moveSpeed;
+		if (players.find((player) => player.id === socket.id).y > 0 + moveSpeed) {
+			players.find((player) => player.id === socket.id).y -= moveSpeed;
+		} else {
+			players.find((player) => player.id === socket.id).y = 0;
+		}
 	});
 
 	socket.on("left", function () {
 		debug && console.log("Moved left");
 		let player = players.find((player) => player.id === socket.id);
-		player.x -= moveSpeed;
+		debug && console.log(player.x - moveSpeed) 
+		if (player.x > 0 + moveSpeed) {
+			player.x -= moveSpeed;
+		} else {
+			player.x = 0;
+		}
 
 		// 438 is the midpoint
 		if (player.x < 438 && player.team === "blue" && player.hasFlag) {
@@ -70,8 +83,11 @@ io.on("connection", function (socket) {
 	socket.on("right", function () {
 		debug && console.log("Moved right");
 		let player = players.find((player) => player.id === socket.id);
-		player.x += moveSpeed;
-
+		if (player.x < 876 - moveSpeed) {
+			player.x += moveSpeed;
+		} else {
+			player.x = 876;
+		}
 		// 438 is the midpoint
 		if (player.x > 438 && player.team === "red" && player.hasFlag) {
 			redScore++;
