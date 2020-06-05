@@ -1,8 +1,9 @@
 // FOR LUKE AND TREVOR -- START
 let socket = io();
 
-socket.on('newPlayer', function(id) {
-
+socket.on('newPlayer', function(id, team) {
+    $("#field").append(`<div id="${id}" class="player ${team}"></div>`);
+    $(`#${id}`).css({bottom: 0, left: 0});
 });
 
 $("body").keydown(function (e) {
@@ -33,12 +34,15 @@ $("body").keydown(function (e) {
 });
 
 socket.on("refresh", function (players) {
-	console.log("received players!");
+    console.log("received players!");
+    for (let i = 0; i < players.length; i++) {
+        $(`#${players[i].id}`).css({ bottom: players[i].y + "px", left: players[i].x + "px" });
+    }
 });
 
 // // FOR LUKE AND TREVOR -- END
 
 // Just for testing positioning things.
 
-var testPlayer = { x: 876, y: 576 };
-$("#testRed").css({ bottom: testPlayer.y + "px", left: testPlayer.x + "px" });
+// var testPlayer = { x: 876, y: 576 };
+// $("#testRed").css({ bottom: testPlayer.y + "px", left: testPlayer.x + "px" });
