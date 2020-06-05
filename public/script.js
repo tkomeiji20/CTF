@@ -11,57 +11,84 @@ let playerList = [];
 // https://stackoverflow.com/questions/10655202/detect-multiple-keys-on-single-keypress-event-in-jquery
 // make it so hasFlag can only be set for one user
 
-$("body").keydown(function (e) {
-	var key = e.which;
+let keyMap = { 87: false, 83: false, 65: false, 68: false };
 
-	// Move up
-	if (key == 87 || key == 38) {
-		console.log("Pressed up");
+$("body")
+	.keydown(function (e) {
+		let key = e.which;
+		if (key in keyMap) {
+			keyMap[key] = true;
+		}
+
+		// Move up
+		// if (key == 87 || key == 38) {
+		// 	console.log("Pressed up");
+		// 	socket.emit("up");
+		// }
+		// // Move down
+		// if (key == 83 || key == 40) {
+		// 	console.log("Pressed down");
+		// 	socket.emit("down");
+		// }
+		// // Move left
+		// if (key == 65 || key == 37) {
+		// 	console.log("Pressed left");
+		// 	socket.emit("left");
+		// }
+		// if (key == 68 || key == 39) {
+		// 	console.log("Pressed right");
+		// 	socket.emit("right");
+		// }
+
+		// switch (key) {
+		// 	// W or up arrow
+		// 	case 87:
+		// 	case 38:
+		// 		console.log("Pressed up");
+		// 		socket.emit("up");
+		// 		break;
+		// 	case 83:
+		// 	case 40:
+		// 		console.log("Pressed down");
+		// 		socket.emit("down");
+		// 		break;
+		// 	case 65:
+		// 	case 37:
+		// 		console.log("Pressed left");
+		// 		socket.emit("left");
+		// 		break;
+		// 	case 68:
+		// 	case 39:
+		// 		console.log("Pressed right");
+		// 		socket.emit("right");
+		// 		break;
+		// }
+	})
+	.keyup(function (e) {
+		let key = e.which;
+		if (key in keyMap) {
+			keyMap[key] = false;
+		}
+	});
+
+setInterval(() => {
+	if (keyMap[87]) {
 		socket.emit("up");
 	}
-	// Move down
-	if (key == 83 || key == 40) {
-		console.log("Pressed down");
+	if (keyMap[83]) {
 		socket.emit("down");
 	}
-	// Move left
-	if (key == 65 || key == 37) {
-		console.log("Pressed left");
+	if (keyMap[65]) {
 		socket.emit("left");
 	}
-	if (key == 68 || key == 39) {
-		console.log("Pressed right");
+	if (keyMap[68]) {
 		socket.emit("right");
 	}
-	/* 
-	switch (key) {
-		// W or up arrow
-		case 87:
-		case 38:
-			console.log("Pressed up");
-			socket.emit("up");
-			break;
-		case 83:
-		case 40:
-			console.log("Pressed down");
-			socket.emit("down");
-			break;
-		case 65:
-		case 37:
-			console.log("Pressed left");
-			socket.emit("left");
-			break;
-		case 68:
-		case 39:
-			console.log("Pressed right");
-			socket.emit("right");
-			break;
-	} */
-});
+}, 50);
 
 socket.on("refresh", function ({ players, redScore, blueScore }) {
-    $("#redScore").html(redScore);
-    $("#blueScore").html(blueScore);
+	$("#redScore").html(redScore);
+	$("#blueScore").html(blueScore);
 	// console.log("received players!");
 	for (let i = 0; i < players.length; i++) {
 		var myEle = document.getElementById(`${players[i].id}`);

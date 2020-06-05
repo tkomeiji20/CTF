@@ -5,7 +5,7 @@ console.log("Debugging: ", debug);
 const express = require("express"),
 	app = express(),
 	server = app.listen(process.env.PORT || process.argv[2] || 8080, () => {
-		debug && console.log(server.address());
+		console.log(server.address());
 	}),
 	helmet = require("helmet"),
 	io = require("socket.io")(server);
