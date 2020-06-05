@@ -19,6 +19,7 @@ var redScore = 0;
 io.on("connection", function (socket) {
 	// Socket stuff in here
 	// Add new object to team arrays
+	console.log("Player connected!");
 	playerCt++;
 	if (playerCt % 2 == 1) {
 		players.push({ x: "0", y: "0", id: socket.id });
@@ -28,7 +29,19 @@ io.on("connection", function (socket) {
 
 	socket.on("up", function () {
 		console.log("Moved up");
-		players.find((player) => player.id === socket.id).x++;
+		players.find((player) => player.id === socket.id).y++;
+	});
+
+	socket.on("down", function () {
+		console.log("Moved down");
+	});
+
+	socket.on("left", function () {
+		console.log("Moved left");
+	});
+
+	socket.on("right", function () {
+		console.log("Moved right");
 	});
 
 	socket.on("disconnect", function () {
@@ -54,14 +67,14 @@ server.listen(8080, function () {
 	console.log("server running on port 8080");
 });
 
-io.on("connection", (socket) => {
-	socket.on("chat message", (msg) => {
-		console.log("message: " + msg);
-	});
-});
+// io.on("connection", (socket) => {
+// 	socket.on("chat message", (msg) => {
+// 		console.log("message: " + msg);
+// 	});
+// });
 
-io.on("connection", (socket) => {
-	socket.on("chat message", (msg) => {
-		io.emit("chat message", msg);
-	});
-});
+// io.on("connection", (socket) => {
+// 	socket.on("chat message", (msg) => {
+// 		io.emit("chat message", msg);
+// 	});
+// });
