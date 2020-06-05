@@ -26,12 +26,11 @@ io.on("connection", function (socket) {
 	playerCt++;
 	if (playerCt % 2 == 1) {
 		players.push({ team: "red", x: 0, y: 0, id: socket.id });
-		socket.emit('newPlayer', socket.id, "red");
+		socket.emit("newPlayer", socket.id, "red");
 	} else {
 		players.push({ team: "blue", x: 0, y: 0, id: socket.id });
-		socket.emit('newPlayer', socket.id, "blue");
+		socket.emit("newPlayer", socket.id, "blue");
 	}
-
 
 	socket.on("up", function () {
 		debug && console.log("Moved up");
