@@ -1,7 +1,7 @@
 // FOR LUKE AND TREVOR -- START
 
 $("#field").keydown(function(e) {
-	var key = event.which;
+	var key = e.which;
 	switch (key) {
 		// W or up arrow
 		case 87:
