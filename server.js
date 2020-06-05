@@ -69,6 +69,8 @@ io.on("connection", function (socket) {
 	});
 });
 
+setInterval(function() { io.sockets.emit('refresh', players); }, 3000);
+
 // io.on("connection", (socket) => {
 // 	socket.on("chat message", (msg) => {
 // 		console.log("message: " + msg);
