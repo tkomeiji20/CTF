@@ -66,14 +66,14 @@ server.listen(8080, function () {
 	console.log("server running on port 8080");
 });
 
-io.on("connection", (socket) => {
-	socket.on("chat message", (msg) => {
-		console.log("message: " + msg);
-	});
-});
+// io.on("connection", (socket) => {
+// 	socket.on("chat message", (msg) => {
+// 		console.log("message: " + msg);
+// 	});
+// });
 
-io.on("connection", (socket) => {
-	socket.on("chat message", (msg) => {
-		io.emit("chat message", msg);
-	});
-});
+// io.on("connection", (socket) => {
+// 	socket.on("chat message", (msg) => {
+// 		io.emit("chat message", msg);
+// 	});
+// });
