@@ -28,7 +28,7 @@ io.on("connection", function (socket) {
 	if (playerCt % 2 == 1) {
 		players.push({
 			team: "red",
-			x: 50,
+			x: 100,
 			y: 576 / 2,
 			id: socket.id,
 			hasFlag: false,
@@ -37,7 +37,7 @@ io.on("connection", function (socket) {
 	} else {
 		players.push({
 			team: "blue",
-			x: 876 - 50,
+			x: 876 - 100,
 			y: 576 / 2,
 			id: socket.id,
 			hasFlag: false,
@@ -130,29 +130,29 @@ setInterval(function () {
 					playerI.y + 10 > playerJ.y
 				) {
 					if (playerI.team === "red" && playerI.x > 438) {
-						playerI.x = 0;
-						playerI.y = 0;
+						playerI.x = 100;
+						playerI.y = 576 / 2;
 					} else if (playerI.team === "blue" && playerI.x < 438){
-						playerI.x = 876;
-						playerI.y = 0;
+						playerI.x = 876 - 100;
+						playerI.y = 576 / 2;
 					} else {
 						if (playerJ.team === "red"){
-							playerJ.x = 0;
+							playerJ.x = 100;
 						} else {
-							playerJ.x = 876;
+							playerJ.x = 876 - 100;
 						}
-						playerJ.y = 0;
+						playerJ.y = 576 / 2;
 					}
 				}
 			}
 		}
 
 		if (Math.abs(playerI.x - 30) < 30 && Math.abs(playerI.y - 278 - 20) < 30 && playerI.team === "blue") {
-			// touching red flag
+			// blue guy touching red flag
 			playerI.hasFlag = true;
 		}
 		if (Math.abs(playerI.x - 841) < 30 && Math.abs(playerI.y - 278 - 20) < 30 && playerI.team === "red") {
-			// touching red flag
+			// red guy touching blue flag
 			playerI.hasFlag = true;
 		}
 	}
