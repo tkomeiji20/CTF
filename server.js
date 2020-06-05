@@ -19,6 +19,7 @@ var redScore = 0;
 io.on("connection", function (socket) {
 	// Socket stuff in here
 	// Add new object to team arrays
+	console.log("Player connected!");
 	playerCt++;
 	if (playerCt % 2 == 1) {
 		players.push({ x: "0", y: "0", id: socket.id });
@@ -26,9 +27,9 @@ io.on("connection", function (socket) {
 		players.push({ x: "0", y: "0", id: socket.id });
 	}
 
-	socket.on('up', function(){
+	socket.on('up', function() {
 		console.log("Moved up");
-	})
+	});
 
 
 

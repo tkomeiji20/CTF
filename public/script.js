@@ -6,6 +6,7 @@ $("#field").keydown(function(e) {
 		// W or up arrow
 		case 87:
 		case 38:
+			console.log("Pressed up");
 			socket.broadcast.emit('up');
 			break;
 	}
