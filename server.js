@@ -11,8 +11,19 @@ let io = socketio(server);
 
 app.use(express.static(pathPublic));
 
+var blueTeam = [];
+var redTeam = [];
+var blueScore = 0;
+var redScore = 0;
+
+
+
+
 io.on("connection", function (socket) {
 	// Socket stuff in here
+
+
+
 });
 
 server.listen(8080, function () {
