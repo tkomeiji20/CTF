@@ -136,11 +136,11 @@ setInterval(function () {
 					playerI.y + 22 > playerJ.y
 				) {
 					// Collided
-					if (playerI.team === "red" && playerI.x > 438) {
+					if (playerI.team === "red" && playerI.x > 438 && playerJ.team === "blue") {
 						playerI.x = 100;
 						playerI.y = 576 / 2;
 						playerI.hasFlag = false;
-					} else if (playerI.team === "blue" && playerI.x < 438) {
+					} else if (playerI.team === "blue" && playerI.x < 438 && playerJ.team === "red") {
 						playerI.x = 876 - 100;
 						playerI.y = 576 / 2;
 						playerI.hasFlag = false;
