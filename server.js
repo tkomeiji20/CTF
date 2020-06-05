@@ -26,11 +26,10 @@ io.on("connection", function (socket) {
 		players.push({ x: "0", y: "0", id: socket.id });
 	}
 
-	socket.on('up', function(){
+	socket.on("up", function () {
 		console.log("Moved up");
-	})
-
-
+		players.find((player) => player.id === socket.id).x++;
+	});
 
 	socket.on("disconnect", function () {
 		console.log("User disconnected: " + socket.id);
@@ -55,14 +54,14 @@ server.listen(8080, function () {
 	console.log("server running on port 8080");
 });
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-  });
+io.on("connection", (socket) => {
+	socket.on("chat message", (msg) => {
+		console.log("message: " + msg);
+	});
 });
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
+io.on("connection", (socket) => {
+	socket.on("chat message", (msg) => {
+		io.emit("chat message", msg);
+	});
 });
