@@ -1,6 +1,7 @@
 // FOR LUKE AND TREVOR -- START
+let socket = io();
 
-$("#field").keydown(function(e) {
+$("body").keydown(function(e) {
 	var key = e.which;
 	switch (key) {
 		// W or up arrow
