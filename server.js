@@ -66,6 +66,8 @@ io.on("connection", function (socket) {
 	});
 });
 
+setInterval(function() { io.sockets.emit('refresh', players); }, 3000);
+
 server.listen(8080, function () {
 	console.log("server running on port 8080");
 });

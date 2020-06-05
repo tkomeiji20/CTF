@@ -28,6 +28,10 @@ $("body").keydown(function (e) {
 	}
 });
 
+socket.on('refresh', function(players) {
+	console.log("received players!");
+});
+
 // // FOR LUKE AND TREVOR -- END
 
 // Just for testing positioning things.
