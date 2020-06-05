@@ -81,6 +81,11 @@ socket.on("refresh", function ({ players, redScore, blueScore }) {
 				50
 			);
 		}
+		if (players[i].hasFlag) {
+			$(`#${players[i].id}`).addClass("hasFlag");
+		} else {
+			$(`#${players[i].id}`).removeClass("hasFlag");
+		}
 	}
 	for (let i = 0; i < playerList.length; i++) {
 		if (
