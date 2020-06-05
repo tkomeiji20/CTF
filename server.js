@@ -124,11 +124,21 @@ setInterval(function () {
 		for (const playerJ of players) {
 			if (!(playerI.id === playerJ.id)) {
 				if (
-					Math.abs(playerI.x - playerJ.x) < 20 &&
-					Math.abs(playerI.y - playerJ.y) < 20
+					playerI.x < playerJ.x + 10 &&
+					playerI.x + 10 > playerJ.x &&
+					playerI.y < playerJ.y + 10 &&
+					playerI.y + 10 > playerJ.y
 				) {
-					// collide
-					console.log("uh oh!");
+					if (playerI.team === "red" && playerI.x > 438) {
+						playerI.x = 0;
+						playerI.y = 0;
+					} else if (playerI.team === "blue" && playerI.x < 438){
+						playerI.x = 0;
+						playerI.y = 0;
+					} else {
+						playerJ.x = 0;
+						playerJ.y = 0;
+					}
 				}
 			}
 		}
