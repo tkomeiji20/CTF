@@ -22,9 +22,9 @@ io.on("connection", function (socket) {
 	console.log("Player connected!");
 	playerCt++;
 	if (playerCt % 2 == 1) {
-		players.push({ x: "0", y: "0", id: socket.id });
+		players.push({ team: "red", x: 0, y: 0, id: socket.id });
 	} else {
-		players.push({ x: "0", y: "0", id: socket.id });
+		players.push({ team: "blue", x: 0, y: 0, id: socket.id });
 	}
 
 	socket.on("up", function () {
