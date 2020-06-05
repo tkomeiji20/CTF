@@ -76,6 +76,8 @@ io.on("connection", function (socket) {
 		if (player.x < 438 && player.team === "red" && player.hasFlag) {
 			redScore++;
 			player.hasFlag = false;
+			player.x = 100;
+			player.y = 576 / 2;
 		}
 	});
 
@@ -91,6 +93,8 @@ io.on("connection", function (socket) {
 		if (player.x > 438 && player.team === "blue" && player.hasFlag) {
 			blueScore++;
 			player.hasFlag = false;
+			player.x = 876 - 100;
+			player.y = 576 / 2;
 		}
 	});
 

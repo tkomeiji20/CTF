@@ -29,7 +29,7 @@
 }
 
 .blue.hasFlag {
-  background-color: orange;
+  background-color: green;
 }
 
 .red {
@@ -37,7 +37,7 @@
 }
 
 .red.hasFlag {
-  background-color: green;
+  background-color: orange;
 }
 
 #testBlue {
