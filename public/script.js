@@ -84,7 +84,7 @@ setInterval(() => {
 	if (keyMap[68]) {
 		socket.emit("right");
 	}
-}, 50);
+}, 25);
 
 socket.on("refresh", function ({ players, redScore, blueScore }) {
 	$("#redScore").html(redScore);

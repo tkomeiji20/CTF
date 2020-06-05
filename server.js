@@ -17,7 +17,7 @@ let playerCt = 0,
 	players = [],
 	blueScore = 0,
 	redScore = 0,
-	moveSpeed = 10;
+	moveSpeed = 5;
 
 io.on("connection", function (socket) {
 	// Socket stuff in here
