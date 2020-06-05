@@ -133,10 +133,14 @@ setInterval(function () {
 						playerI.x = 0;
 						playerI.y = 0;
 					} else if (playerI.team === "blue" && playerI.x < 438){
-						playerI.x = 0;
+						playerI.x = 876;
 						playerI.y = 0;
 					} else {
-						playerJ.x = 0;
+						if (playerJ.team === "red"){
+							playerJ.x = 0;
+						} else {
+							playerI.x = 876;
+						}
 						playerJ.y = 0;
 					}
 				}
