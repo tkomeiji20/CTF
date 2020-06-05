@@ -110,7 +110,7 @@ io.on("connection", function (socket) {
 		// Remove player from players
 		if (toRemove != -1) {
 			players.splice(toRemove, 1);
-			console.log("Player disconnected. " + socket.id);
+			debug && console.log("Player disconnected. " + socket.id);
 		} else {
 			console.log("Could not remove player on disconnect. " + socket.id);
 		}
@@ -155,7 +155,7 @@ setInterval(function () {
 			playerI.team === "blue"
 		) {
 			// blue guy touching red flag
-			if (!players.map((player) => {return player.team === "blue" && player.hasFlag}).indexOf(true)) {
+			if (!players.map((player) => {return player.team === "blue" && player.hasFlag && player.id !== playerI.id}).indexOf(true)) {
 				// no other blue guy touching flag
 				playerI.hasFlag = true;
 			}
@@ -167,7 +167,7 @@ setInterval(function () {
 			playerI.team === "red"
 		) {
 			// red guy touching blue flag
-			if (!players.map((player) => {return player.team === "red" && player.hasFlag}).indexOf(true)) {
+			if (!players.map((player) => {return player.team === "red" && player.hasFlag && player.id !== playerI.id}).indexOf(true)) {
 				// no other red guy touching flag
 				playerI.hasFlag = true;
 			}
