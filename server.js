@@ -44,28 +44,28 @@ io.on("connection", function (socket) {
 		});
 		socket.emit("newPlayer", socket.id, "blue");
 	}
-
+	const player = players.find((player) => player.id === socket.id);
 	socket.on("up", function () {
 		debug && console.log("Moved up");
-		if (players.find((player) => player.id === socket.id).y < 576 - moveSpeed) {
-			players.find((player) => player.id === socket.id).y += moveSpeed;
+		if (player.y < 576 - moveSpeed) {
+			player.y += moveSpeed;
 		} else {
-			players.find((player) => player.id === socket.id).y = 576;
+			player.y = 576;
 		}
 	});
 
 	socket.on("down", function () {
 		debug && console.log("Moved down");
-		if (players.find((player) => player.id === socket.id).y > 0 + moveSpeed) {
-			players.find((player) => player.id === socket.id).y -= moveSpeed;
+		if (player.y > 0 + moveSpeed) {
+			player.y -= moveSpeed;
 		} else {
-			players.find((player) => player.id === socket.id).y = 0;
+			player.y = 0;
 		}
 	});
 
+
 	socket.on("left", function () {
 		debug && console.log("Moved left");
-		let player = players.find((player) => player.id === socket.id);
 		if (player.x > 0 + moveSpeed) {
 			player.x -= moveSpeed;
 		} else {
@@ -83,7 +83,6 @@ io.on("connection", function (socket) {
 
 	socket.on("right", function () {
 		debug && console.log("Moved right");
-		let player = players.find((player) => player.id === socket.id);
 		if (player.x < 876 - moveSpeed) {
 			player.x += moveSpeed;
 		} else {
