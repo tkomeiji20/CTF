@@ -1,5 +1,6 @@
 // FOR LUKE AND TREVOR -- START
 let socket = io();
+let playerList = [];
 
 // socket.on("newPlayer", function (id, team) {
 // 	$("#field").append(`<div id="${id}" class="player ${team}"></div>`);
@@ -63,6 +64,7 @@ socket.on("refresh", function ({ players, redScore, blueScore }) {
 		var myEle = document.getElementById(`${players[i].id}`);
 		if (!myEle) {
 			// does not exist yet
+			playerList.push(players[i].id);
 			$("#field").append(
 				`<div id="${players[i].id}" class="player ${players[i].team}"></div>`
 			);
@@ -76,6 +78,19 @@ socket.on("refresh", function ({ players, redScore, blueScore }) {
 				{ bottom: players[i].y + "px", left: players[i].x + "px" },
 				50
 			);
+		}
+	}
+	for (let i = 0; i < playerList.length; i++) {
+		if (
+			players
+				.map((player) => {
+					return player.id;
+				})
+				.indexOf(playerList[i]) < 0
+		) {
+			// player went away
+			$(`#${playerList[i]}`).remove();
+			playerList.splice(i, 1);
 		}
 	}
 });

@@ -66,7 +66,6 @@ io.on("connection", function (socket) {
 	socket.on("left", function () {
 		debug && console.log("Moved left");
 		let player = players.find((player) => player.id === socket.id);
-		debug && console.log(player.x - moveSpeed) 
 		if (player.x > 0 + moveSpeed) {
 			player.x -= moveSpeed;
 		} else {
