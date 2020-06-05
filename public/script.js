@@ -36,7 +36,7 @@ $("body").keydown(function (e) {
 socket.on("refresh", function (players) {
     console.log("received players!");
     for (let i = 0; i < players.length; i++) {
-        $(`#${players[i].id}`).css({ bottom: players[i].y + "px", left: players[i].x + "px" });
+        $(`#${players[i].id}`).animate({ bottom: players[i].y + "px", left: players[i].x + "px" }, 0);
     }
 });
 
