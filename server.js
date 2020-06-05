@@ -139,7 +139,7 @@ setInterval(function () {
 						if (playerJ.team === "red"){
 							playerJ.x = 0;
 						} else {
-							playerI.x = 876;
+							playerJ.x = 876;
 						}
 						playerJ.y = 0;
 					}
