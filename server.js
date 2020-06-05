@@ -130,10 +130,10 @@ setInterval(function () {
 		for (const playerJ of players) {
 			if (!(playerI.id === playerJ.id)) {
 				if (
-					playerI.x < playerJ.x + 20 &&
-					playerI.x + 20 > playerJ.x &&
-					playerI.y < playerJ.y + 20 &&
-					playerI.y + 20 > playerJ.y
+					playerI.x < playerJ.x + 21 &&
+					playerI.x + 21 > playerJ.x &&
+					playerI.y < playerJ.y + 21 &&
+					playerI.y + 21 > playerJ.y
 				) {
 					// Collided
 					if (playerI.team === "red" && playerI.x > 438 && playerJ.team === "blue") {
