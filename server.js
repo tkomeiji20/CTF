@@ -47,7 +47,10 @@ io.on("connection", function (socket) {
 
 	socket.on("up", function () {
 		debug && console.log("Moved up");
-		if (players.find((player) => player.id === socket.id).y < 576 - moveSpeed) {
+		if (
+			players.find((player) => player.id === socket.id).y <
+			576 - moveSpeed
+		) {
 			players.find((player) => player.id === socket.id).y += moveSpeed;
 		} else {
 			players.find((player) => player.id === socket.id).y = 576;
@@ -56,7 +59,10 @@ io.on("connection", function (socket) {
 
 	socket.on("down", function () {
 		debug && console.log("Moved down");
-		if (players.find((player) => player.id === socket.id).y > 0 + moveSpeed) {
+		if (
+			players.find((player) => player.id === socket.id).y >
+			0 + moveSpeed
+		) {
 			players.find((player) => player.id === socket.id).y -= moveSpeed;
 		} else {
 			players.find((player) => player.id === socket.id).y = 0;
@@ -116,6 +122,7 @@ io.on("connection", function (socket) {
 
 		playerCt--;
 		if (playerCt === 0) {
+			console.log("Server reset.");
 			// No players left :(
 			blueScore = 0;
 			redScore = 0;
@@ -136,11 +143,11 @@ setInterval(function () {
 					if (playerI.team === "red" && playerI.x > 438) {
 						playerI.x = 100;
 						playerI.y = 576 / 2;
-					} else if (playerI.team === "blue" && playerI.x < 438){
+					} else if (playerI.team === "blue" && playerI.x < 438) {
 						playerI.x = 876 - 100;
 						playerI.y = 576 / 2;
 					} else {
-						if (playerJ.team === "red"){
+						if (playerJ.team === "red") {
 							playerJ.x = 100;
 						} else {
 							playerJ.x = 876 - 100;
@@ -151,18 +158,34 @@ setInterval(function () {
 			}
 		}
 
-		if (Math.abs(playerI.x - 30) < 30 && Math.abs(playerI.y - 278 - 20) < 30 && playerI.team === "blue") {
+		if (
+			Math.abs(playerI.x - 30) < 30 &&
+			Math.abs(playerI.y - 278 - 20) < 30 &&
+			playerI.team === "blue"
+		) {
 			// blue guy touching red flag
 			playerI.hasFlag = true;
 		}
-		if (Math.abs(playerI.x - 841) < 30 && Math.abs(playerI.y - 278 - 20) < 30 && playerI.team === "red") {
+		if (
+			Math.abs(playerI.x - 841) < 30 &&
+			Math.abs(playerI.y - 278 - 20) < 30 &&
+			playerI.team === "red"
+		) {
 			// red guy touching blue flag
 			playerI.hasFlag = true;
 		}
 
-		if (playerI.hasFlag === true && playerI.team === "red" && playerI.x < 438) {
+		if (
+			playerI.hasFlag === true &&
+			playerI.team === "red" &&
+			playerI.x < 438
+		) {
 			redScore++;
-		} else if (playerI.hasFlag === true && playerI.team === "blue" && playerI.x > 438) {
+		} else if (
+			playerI.hasFlag === true &&
+			playerI.team === "blue" &&
+			playerI.x > 438
+		) {
 			blueScore++;
 		}
 	}
