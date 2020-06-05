@@ -1,6 +1,10 @@
 // FOR LUKE AND TREVOR -- START
 let socket = io();
 
+socket.on('newPlayer', function(id) {
+
+});
+
 $("body").keydown(function (e) {
 	var key = e.which;
 	switch (key) {
@@ -28,7 +32,7 @@ $("body").keydown(function (e) {
 	}
 });
 
-socket.on('refresh', function(players) {
+socket.on("refresh", function (players) {
 	console.log("received players!");
 });
 
@@ -36,6 +40,5 @@ socket.on('refresh', function(players) {
 
 // Just for testing positioning things.
 
-
-var testPlayer = {x: 876, y: 576}
-$("#testRed").css({"bottom": testPlayer.y + "px", "left": testPlayer.x + "px"})
+var testPlayer = { x: 876, y: 576 };
+$("#testRed").css({ bottom: testPlayer.y + "px", left: testPlayer.x + "px" });
