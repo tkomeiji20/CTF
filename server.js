@@ -12,12 +12,9 @@ let io = socketio(server);
 app.use(express.static(pathPublic));
 
 var playerCt = 0;
-var blueTeam = [];
-var redTeam = [];
+var players = [];
 var blueScore = 0;
 var redScore = 0;
-
-var player = {x: "0", y: "0", id: "0"}
 
 
 io.on("connection", function (socket) {
@@ -25,24 +22,26 @@ io.on("connection", function (socket) {
 	// Add new object to team arrays
 	playerCt++;
 	if (playerCt % 2 == 1) {
-		redTeam.push{x: "0", y: '0', id: socket.id}
+		players.push{team: "red", x: "0", y: '0', id: socket.id}
 	}
 	else {
-		blueTeam.push{x: "0", y: '0', id: socket.id}
+		players.push{team: "blue", x: "0", y: '0', id: socket.id}
 	}
+
+
 
 
 
 	socket.on('disconnect', function() {
 		console.log("User disconnected" + socket.id);
-		var toRemove = blueTeam.map(function(player) { return player.id; }).indexOf(socket.id);
-		if (toRemove == -1) {
-			toRemove = redTeam.map(function(player) { return player.id; }).indexOf(socket.id);
-			redTeam.splice(toRemove);
+		var toRemove = players.map(function(player) { return player.id; }).indexOf(socket.id);
+		if (toRemove != -1) {
+			players.splice(toRemove, 1);
 		}
 		else {
-			blueTeam.splice(toRemove);
+			console.log("WHAT JUST HAPPENED?!");
 		}
+		
 
 		playerCt--;
 	})
