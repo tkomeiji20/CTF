@@ -35,6 +35,15 @@ io.on("connection", function (socket) {
 
 	socket.on('disconnect', function() {
 		console.log("User disconnected" + socket.id);
+		var toRemove = blueTeam.map(function(player) { return player.id; }).indexOf(socket.id);
+		if (toRemove == -1) {
+			toRemove = redTeam.map(function(player) { return player.id; }).indexOf(socket.id);
+			redTeam.splice(toRemove);
+		}
+		else {
+			blueTeam.splice(toRemove);
+		}
+
 		playerCt--;
 	})
 });
