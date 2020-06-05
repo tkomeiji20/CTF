@@ -10,5 +10,6 @@
 
 // Just for testing positioning things.
 
-var testPlayer = {x: 20, y: 40}
-$("#test").css({"top":testPlayer.x, "left":testPlayer.x})
+
+var testPlayer = {x: 886, y: 586}
+$("#testRed").css({"bottom": testPlayer.y + "px", "left": testPlayer.x + "px"})
