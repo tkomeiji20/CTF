@@ -84,7 +84,7 @@ setInterval(() => {
 	if (keyMap[68]) {
 		socket.emit("right");
 	}
-}, 20);
+}, 50);
 
 socket.on("refresh", function ({ players, redScore, blueScore }) {
 	$("#redScore").html(redScore);
@@ -106,7 +106,7 @@ socket.on("refresh", function ({ players, redScore, blueScore }) {
 			$(`#${players[i].id}`).clearQueue();
 			$(`#${players[i].id}`).animate(
 				{ bottom: players[i].y + "px", left: players[i].x + "px" },
-				50
+				70
 			);
 		}
 		if (players[i].hasFlag) {
