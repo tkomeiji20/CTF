@@ -1,15 +1,18 @@
-const path = require("path");
-const express = require("express");
-const socketio = require("socket.io");
-const http = require("http");
+const debug = !process.env.NODE_ENV;
+console.log("Environment: ", process.env.NODE_ENV || "dev");
+console.log("Debugging: ", debug);
 
-const pathPublic = path.join(__dirname, "/public");
+const express = require("express"),
+	app = express(),
+	server = app.listen(process.env.PORT || process.argv[2] || 8080, () => {
+		debug && console.log(server.address());
+	}),
+	helmet = require("helmet"),
+	io = require("socket.io")(server);
 
-var app = express();
-let server = http.createServer(app);
-let io = socketio(server);
 
-app.use(express.static(pathPublic));
+app.use(helmet());
+app.use(express.static(__dirname + "/public"));
 
 var playerCt = 0;
 var players = [];
@@ -19,7 +22,7 @@ var redScore = 0;
 io.on("connection", function (socket) {
 	// Socket stuff in here
 	// Add new object to team arrays
-	console.log("Player connected!");
+	debug && console.log("Player connected!");
 	playerCt++;
 	if (playerCt % 2 == 1) {
 		players.push({ team: "red", x: 0, y: 0, id: socket.id });
@@ -28,27 +31,27 @@ io.on("connection", function (socket) {
 	}
 
 	socket.on("up", function () {
-		console.log("Moved up");
+		debug && console.log("Moved up");
 		players.find((player) => player.id === socket.id).y++;
 	});
 
 	socket.on("down", function () {
-		console.log("Moved down");
+		debug && console.log("Moved down");
 		players.find((player) => player.id === socket.id).y--;
 	});
 
 	socket.on("left", function () {
-		console.log("Moved left");
+		debug && console.log("Moved left");
 		players.find((player) => player.id === socket.id).x++;
 	});
 
 	socket.on("right", function () {
-		console.log("Moved right");
+		debug && console.log("Moved right");
 		players.find((player) => player.id === socket.id).x--;
 	});
 
 	socket.on("disconnect", function () {
-		console.log("User disconnected: " + socket.id);
+		debug && console.log("User disconnected: " + socket.id);
 		// Get index of person that left
 		var toRemove = players
 			.map(function (player) {
@@ -59,15 +62,11 @@ io.on("connection", function (socket) {
 		if (toRemove != -1) {
 			players.splice(toRemove, 1);
 		} else {
-			console.log("WHAT JUST HAPPENED?!");
+			debug && console.log("WHAT JUST HAPPENED?!");
 		}
 
 		playerCt--;
 	});
-});
-
-server.listen(8080, function () {
-	console.log("server running on port 8080");
 });
 
 // io.on("connection", (socket) => {
