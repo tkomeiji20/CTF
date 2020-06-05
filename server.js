@@ -13,6 +13,7 @@ app.use(express.static(pathPublic));
 
 io.on('connection', function(socket) {
 	// Socket stuff in here
+	
 
 });
 
