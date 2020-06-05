@@ -75,7 +75,7 @@ io.on("connection", function (socket) {
 
 setInterval(function () {
 	io.sockets.emit("refresh", players);
-}, 10);
+}, 50);
 
 // io.on("connection", (socket) => {
 // 	socket.on("chat message", (msg) => {
