@@ -25,10 +25,10 @@ io.on("connection", function (socket) {
 
 	playerCt++;
 	if (playerCt % 2 == 1) {
-		players.push({ team: "red", x: 0, y: 0, id: socket.id });
+		players.push({ team: "red", x: 0, y: 0, id: socket.id, hasFlag: false });
 		socket.emit("newPlayer", socket.id, "red");
 	} else {
-		players.push({ team: "blue", x: 0, y: 0, id: socket.id });
+		players.push({ team: "blue", x: 0, y: 0, id: socket.id, hasFlag: false });
 		socket.emit("newPlayer", socket.id, "blue");
 	}
 
