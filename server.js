@@ -155,7 +155,7 @@ setInterval(function () {
 			playerI.team === "blue"
 		) {
 			// blue guy touching red flag
-			if (!players.map((player) => {return player.team === "blue" && player.hasFlag && player.id !== playerI.id}).indexOf(true)) {
+			if (!players.map((player) => {return player.team === "blue" && player.hasFlag && player.id !== playerI.id}).indexOf(true) < 0) {
 				// no other blue guy touching flag
 				playerI.hasFlag = true;
 			}
@@ -167,7 +167,7 @@ setInterval(function () {
 			playerI.team === "red"
 		) {
 			// red guy touching blue flag
-			if (!players.map((player) => {return player.team === "red" && player.hasFlag && player.id !== playerI.id}).indexOf(true)) {
+			if (!players.map((player) => {return player.team === "red" && player.hasFlag && player.id !== playerI.id}).indexOf(true) < 0) {
 				// no other red guy touching flag
 				playerI.hasFlag = true;
 			}
