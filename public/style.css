@@ -1,5 +1,14 @@
 #field{
-  position: abosulte;
-  width: 90%;
-  border: 3px soild black;
+  position: absoulte;
+  width: 900px;
+  height: 600px;
+  border: 3px solid black;
+}
+
+#line{
+  position: relative;
+  left: 0px;
+  width: 450px;
+  height: 600px;
+  border-right: 3px solid black;
 }
