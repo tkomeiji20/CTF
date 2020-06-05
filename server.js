@@ -34,14 +34,17 @@ io.on("connection", function (socket) {
 
 	socket.on("down", function () {
 		console.log("Moved down");
+		players.find((player) => player.id === socket.id).y--;
 	});
 
 	socket.on("left", function () {
 		console.log("Moved left");
+		players.find((player) => player.id === socket.id).x++;
 	});
 
 	socket.on("right", function () {
 		console.log("Moved right");
+		players.find((player) => player.id === socket.id).x--;
 	});
 
 	socket.on("disconnect", function () {
